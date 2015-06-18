@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view locale="#{bean.locale}">
+<h:head>
+<title>#{msgs.formulario}</title>
+</h:head>
+<h:body>
+   <h:form>
+   		<h:outputText value="#{msgs.idioma}" />
+   		<h:outputText value="&#160;" />
+   		<h:commandButton actionListener="#{bean.cambiarLanguage('es')}"
+			value="Spanish" image="resources/img/icon/es.png" />
+		<h:outputText value="&#160;" />
+		<h:commandButton actionListener="#{bean.cambiarLanguage('en')}"
+			value="English" image="resources/img/icon/uk.png" />
+   </h:form>
+   <h:form id="form">
+   		<h1>
+        	#{msgs.responder}:
+        </h1>
+        <h3>
+        	#{msgs.nacimiento}:
+        </h3>
+        <h:selectOneMenu value="#{bean.mes}">
+  				<f:selectItem itemValue="#{msgs.Enero}" itemLabel="#{msgs.Enero}" />
+  				<f:selectItem itemValue="#{msgs.Febrero}" itemLabel="#{msgs.Febrero}" />
+  				<f:selectItem itemValue="#{msgs.Marzo}" itemLabel="#{msgs.Marzo}" />
+  				<f:selectItem itemValue="#{msgs.Abril}" itemLabel="#{msgs.Abril}" />
+  				<f:selectItem itemValue="#{msgs.Mayo}" itemLabel="#{msgs.Mayo}" />
+  				<f:selectItem itemValue="#{msgs.Junio}" itemLabel="#{msgs.Junio}" />
+  				<f:selectItem itemValue="#{msgs.Julio}" itemLabel="#{msgs.Julio}" />
+  				<f:selectItem itemValue="#{msgs.Agosto}" itemLabel="#{msgs.Agosto}" />
+  				<f:selectItem itemValue="#{msgs.Septiembre}" itemLabel="#{msgs.Septiembre}" />
+  				<f:selectItem itemValue="#{msgs.Octubre}" itemLabel="#{msgs.Octubre}" />
+  				<f:selectItem itemValue="#{msgs.Noviembre}" itemLabel="#{msgs.Noviembre}" />
+  				<f:selectItem itemValue="#{msgs.Diciembre}" itemLabel="#{msgs.Diciembre}" />
+		</h:selectOneMenu>
+		<h3>
+			#{msgs.colores}:
+			<h:message for="colores" style="color: red;" />
+		</h3>
+		<h:selectManyCheckbox id="colores" required="true" requiredMessage="#{msgs.mensajeColor}" value="#{bean.colores}">
+  				<f:selectItem itemValue="#{msgs.Rojo}" itemLabel="#{msgs.Rojo}" />
+  				<f:selectItem itemValue="#{msgs.Amarillo}" itemLabel="#{msgs.Amarillo}" />
+  				<f:selectItem itemValue="#{msgs.Azul}" itemLabel="#{msgs.Azul}" />
+  				<f:selectItem itemValue="#{msgs.Verde}" itemLabel="#{msgs.Verde}" />
+  				<f:selectItem itemValue="#{msgs.Negro}" itemLabel="#{msgs.Negro}" />
+  				<f:selectItem itemValue="#{msgs.Lila}" itemLabel="#{msgs.Lila}" />
+		</h:selectManyCheckbox>
+		
+        <h3>
+        	#{msgs.asignaturas}:
+        	<h:message for="asignaturas" style="color: red;" />
+        </h3>
+        <h:selectBooleanCheckbox value="#{bean.checked}"> #{msgs.Ninguna}
+        	<f:ajax render="asignaturas" />
+        </h:selectBooleanCheckbox>
+        <br></br><br></br>
+		<h:selectOneListbox id="asignaturas" value="#{bean.numero}" required="#{!bean.checked}" requiredMessage="#{msgs.mensajeAsig}" disabled="#{bean.checked}">
+		   	<f:selectItem itemValue="#{msgs.Una}" itemLabel="#{msgs.Una}" />
+		   	<f:selectItem itemValue="#{msgs.Dos}" itemLabel="#{msgs.Dos}" />
+		   	<f:selectItem itemValue="#{msgs.Tres}" itemLabel="#{msgs.Tres}" />
+		   	<f:selectItem itemValue="#{msgs.Cuatro}" itemLabel="#{msgs.Cuatro}" />
+		   	<f:selectItem itemValue="#{msgs.Cincomas}" itemLabel="#{msgs.Cincomas}" />
+		</h:selectOneListbox>
+		<br></br><br></br>
+        <h:commandButton value="#{msgs.boton}" action="result"/>
+    </h:form>
+</h:body>
+</f:view>
+</html>
